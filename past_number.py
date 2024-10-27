@@ -3,7 +3,8 @@ def del_not_p_number(list_number,number_p,n):
     if number_p == 5:
         return del_not_p_number(list_number,list_number[list_number.index(number_p)+1],n)
     if number_p>(n**(0.5)):
-        return len(list_number)+1
+        print(list_number)
+        return len(list_number)
     
     for number in list_number[:]:
         if number*number_p in list_number[list_number.index(number_p)-1:]:
@@ -19,9 +20,9 @@ def search_count_numbers(n):
         return 1
     list_number = [2, 3]
     for i in range(5, n+1, 2):
-        if i%10 != 5:
+        if i%10 != 5 or i == 5:
             list_number.append(i)
     return del_not_p_number(list_number,3,n)
 
-print(search_count_numbers(5))
+print(search_count_numbers(18))
 
