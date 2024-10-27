@@ -14,11 +14,15 @@ def del_not_p_number(list_number,number_p,n):
     return del_not_p_number(list_number,list_number[list_number.index(number_p)+1],n)
 
 def search_count_numbers(n):
-    list_number = [2, 3, 5, 7]
+    if n<2:
+        return 0
+    elif n<3:
+        return 1
+    list_number = [2, 3]
     for i in range(9, n+1, 2):
         if i%10 != 5:
             list_number.append(i)
     return del_not_p_number(list_number,3,n)
 
-print(search_count_numbers(14797))
+print(search_count_numbers(1))
 
