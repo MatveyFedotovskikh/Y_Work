@@ -1,45 +1,24 @@
+
 def del_not_p_number(list_number,number_p,n):
-    number_p += 1
+    if number_p == 5:
+        return del_not_p_number(list_number,list_number[list_number.index(number_p)+1],n)
     if number_p>(n**(0.5)):
+        a = list_number
         return len(list_number)
-    for number in range(2,n+1,number_p):
-        if number in list_number:
-            list_number.remove(number)
-    return del_not_p_number(list_number,number_p,n)
+    
+    for number in list_number[:]:
+        if number*number_p in list_number:
+            list_number.remove(number*number_p)
+        if number*number_p> n:
+            break
+    return del_not_p_number(list_number,list_number[list_number.index(number_p)+1],n)
 
 def search_count_numbers(n):
-    list_p_number = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293]
-    
-    if n>list_p_number[-1]:
-        list_numbers = [i for i in range(list_p_number[-1]+1,n+1)]
-        
-        for number_p in list_p_number:
-            if number_p>(n**(0.5)):
-                return len(list_p_number) + len(list_numbers)
-            
-            else:
-                for number in range(2,n+1,number_p):
-                    if number in list_numbers:
-                        list_numbers.remove(number)
-        if list_p_number[-1]>=(n**(0.5)):
-            return len(list_p_number) + len(list_numbers)
-        else:
-            return del_not_p_number(list_p_number+list_numbers, number_p,n)
-        
-            
+    list_number = [2, 3, 5, 7]
+    for i in range(9, n+1, 2):
+        if i%10 != 5:
+            list_number.append(i)
+    return del_not_p_number(list_number,3,n)
 
-    else:
-        i = len(list_p_number)//2
-        
-        while True:
-            if list_p_number[i] == n or (list_p_number[i]<n and list_p_number[i+1]>n):
-                return len(list_p_number[:i+1])
-
-            elif list_p_number[i]<n:
-                i+=1
-
-            else:
-                i-=1
-
-print(search_count_numbers(13001))
+print(search_count_numbers(14797))
 
